@@ -1,6 +1,7 @@
 package co.edu.ims.pruebas;
 
 import co.edu.ims.modelo.Genero;
+import co.edu.ims.modelo.Pelicula;
 import co.edu.ims.modelo.Persona;
 import java.util.GregorianCalendar;
 
@@ -27,6 +28,9 @@ public class AppMain {
         em.persist(accion); // Se persiste objeto en base de datos.
         tx.commit();
         
+        
+       
+        
         // Se crea objeto en memoria (sin persistir aun).
         Persona guillermoDelToro = new Persona(
                 "Guillermo del Toro", 
@@ -35,7 +39,23 @@ public class AppMain {
         
         tx.begin();
         em.persist(guillermoDelToro); // Se persiste objeto en base de datos.
+        em.persist(alexDeLaIglesia);
         tx.commit();
+        
+        
+         Pelicula laberintoDelFauno
+                = new Pelicula ("laberinto del fauno", guillermoDelToro);
+         
+         laberintoDelFauno.getGeneros().add(accion);
+         laberintoDelFauno.getGeneros().add(misterios)
+         
+         
+         
+         tx.begin();
+         em.persist(laberintoDelFauno);
+         tx.commit();
+        
+        
         
         // Se crea objeto en memoria (sin persistir aun).
         Genero romance = new Genero("Romance", "Peliculas de romance");
